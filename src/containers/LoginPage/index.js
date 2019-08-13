@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import compose from 'recompose/compose';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -55,6 +56,7 @@ class LoginPage extends Component {
             onSubmit={this.onSubmit}
             error={error}
           />
+          <Link to="/tradingview">TradingView</Link>
         </Paper>
       </main>
     );

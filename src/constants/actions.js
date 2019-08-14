@@ -25,3 +25,7 @@ export const FETCH_LOGOUT = 'auth/FETCH_LOGOUT';
 export const FAIL_LOGOUT = 'auth/FAIL_LOGOUT';
 export const FETCH_LOGIN = 'auth/FETCH_LOGIN';
 export const FAIL_LOGIN = 'auth/FAIL_LOGIN';
+
+export const FETCH_TRADING_DATA = 'trading/FETCH_TRADING_DATA';
+export const SUCCESS_TRADING_DATA = 'trading/SUCCESS_TRADING_DATA';
+export const FAIL_TRADING_DATA = 'trading/FAIL_TRADING_DATA';

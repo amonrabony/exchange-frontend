@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { widget } from '../../libs/charting_library/charting_library.min';
 import withStyles from '@material-ui/core/styles/withStyles';
 // import moment from 'moment';
+import { CompatibleDatafeed } from '../../services/trading.service';
 
 const styles = theme => ({
 });
@@ -33,10 +34,31 @@ class TradingView extends Component {
 
 
   componentDidMount() {
+    // const widgetOptions = {
+    //   symbol: this.props.symbol,
+    //   // BEWARE: no trailing slash is expected in feed URL
+    //   datafeed: new window.Datafeeds.UDFCompatibleDatafeed(this.props.datafeedUrl),
+    //   interval: this.props.interval,
+    //   container_id: this.props.containerId,
+    //   library_path: this.props.libraryPath,
+    //
+    //   locale: getLanguageFromURL() || 'en',
+    //   disabled_features: ['use_localstorage_for_settings'],
+    //   enabled_features: ['study_templates'],
+    //   charts_storage_url: this.props.chartsStorageUrl,
+    //   charts_storage_api_version: this.props.chartsStorageApiVersion,
+    //   client_id: this.props.clientId,
+    //   user_id: this.props.userId,
+    //   fullscreen: this.props.fullscreen,
+    //   autosize: this.props.autosize,
+    //   studies_overrides: this.props.studiesOverrides,
+    // };
+
     const widgetOptions = {
       symbol: this.props.symbol,
       // BEWARE: no trailing slash is expected in feed URL
-      datafeed: new window.Datafeeds.UDFCompatibleDatafeed(this.props.datafeedUrl),
+      // datafeed: new window.Datafeeds.UDFCompatibleDatafeed(this.props.datafeedUrl),
+      datafeed: new CompatibleDatafeed(this.props.datafeedUrl),
       interval: this.props.interval,
       container_id: this.props.containerId,
       library_path: this.props.libraryPath,

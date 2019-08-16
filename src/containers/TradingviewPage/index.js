@@ -2,37 +2,19 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import compose from 'recompose/compose';
 import CssBaseline from '@material-ui/core/CssBaseline';
+// eslint-disable-next-line
 import Typography from '@material-ui/core/Typography';
 import withStyles from '@material-ui/core/styles/withStyles';
 import { fetchTradingData } from '../../actions/trading';
 import TradingView from '../../components/TradingView';
-// import * from '../../../public/lightweight-charts@1.0.2';
 
 const styles = theme => ({
-  main: {
-    width: 'auto',
-    display: 'block', // Fix IE 11 issue.
-    marginLeft: theme.spacing.unit * 3,
-    marginRight: theme.spacing.unit * 3,
-    [theme.breakpoints.up(400 + theme.spacing.unit * 3 * 2)]: {
-      width: 400,
-      marginLeft: 'auto',
-      marginRight: 'auto',
-    },
-  },
-  paper: {
-    marginTop: theme.spacing.unit * 8,
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    padding: `${theme.spacing.unit * 2}px ${theme.spacing.unit * 3}px ${theme.spacing.unit * 3}px`,
-  }
 });
 
 class TradingviewPage extends Component {
 
   componentDidMount() {
-    this.props.fetchTradingData();
+    // this.props.fetchTradingData();
 
     // var chart = createChart(document.body, {
     //   width: 600,
@@ -296,13 +278,15 @@ class TradingviewPage extends Component {
   }
 
   render () {
+    // eslint-disable-next-line
     const { classes, tradingIsFetching, data } = this.props;
 
     return (
       <main className={classes.main}>
         <CssBaseline />
-        <Typography component="h1" variant="h5">TragingView</Typography>
-        {!tradingIsFetching && !!data.length && (<TradingView data={data}/>)}
+        {/*<Typography component="h1" variant="h5">TragingView</Typography>*/}
+        {/*{!tradingIsFetching && !!data.length && (<TradingView data={data}/>)}*/}
+        <TradingView/>
       </main>
     );
   }

@@ -64,7 +64,7 @@ export class DataPulseProvider {
       });
   }
 
-  _onSubscriberDataReceived(listenerGuid, result): void {
+  _onSubscriberDataReceived(listenerGuid, result) {
     // means the subscription was cancelled while waiting for data
     if (!this._subscribers.hasOwnProperty(listenerGuid)) {
       // logMessage(`DataPulseProvider: Data comes for already unsubscribed subscription #${listenerGuid}`);

@@ -37,39 +37,64 @@ export class CompatibleDatafeedBase {
   }
 
   resolveSymbol(symbolName, onResolve, onError) {
-    // logMessage('Resolve requested');
+    const info = {
+      description: "AZBIT LTD",
+      'exchange-listed': "Azbit",
+      'exchange-traded': "Azbit",
+      has_intraday: false,
+      has_no_volume: false,
+      minmov: 1,
+      minmov2: 0,
+      name: "ETH_USD",
+      pointvalue: 1,
+      pricescale: 100,
+      session: "0930-1630",
+      supported_resolutions: ["D", "2D", "3D", "W", "3W", "M", "6M"],
+      ticker: "ETH_USD",
+      timezone: "Europe/Tallinn",
+      type: "stock",
+    };
 
-    const resolveRequestStartTime = Date.now();
-    function onResultReady(symbolInfo) {
-      // logMessage(`Symbol resolved: ${Date.now() - resolveRequestStartTime}ms`);
-      onResolve(symbolInfo);
-    }
+    setTimeout(() => onResolve(info), 0);
 
-    if (!this._configuration.supports_group_request) {
-      const params = {
-        symbol: symbolName,
-      };
-
-      this._send('symbols', params)
-        .then((response) => {
-          if (response.s !== undefined) {
-            onError('unknown_symbol');
-          } else {
-            onResultReady(response);
-          }
-        })
-        .catch((reason) => {
-        // logMessage(`UdfCompatibleDatafeed: Error resolving symbol: ${getErrorMessage(reason)}`);
-        onError('unknown_symbol');
-      });
-    } else {
-      if (this._symbolsStorage === null) {
-        throw new Error('UdfCompatibleDatafeed: inconsistent configuration (symbols storage)');
-      }
-
-      // this._symbolsStorage.resolveSymbol(symbolName).then(onResultReady).catch(onError);
-    }
+    // onResolve(info);
   }
+
+  // TODO: uncomment me to get info about
+  // resolveSymbol(symbolName, onResolve, onError) {
+  //   // logMessage('Resolve requested');
+  //
+  //   const resolveRequestStartTime = Date.now();
+  //   function onResultReady(symbolInfo) {
+  //     // logMessage(`Symbol resolved: ${Date.now() - resolveRequestStartTime}ms`);
+  //     onResolve(symbolInfo);
+  //   }
+  //
+  //   if (!this._configuration.supports_group_request) {
+  //     const params = {
+  //       symbol: symbolName,
+  //     };
+  //
+  //     this._send('symbols', params)
+  //       .then((response) => {
+  //         if (response.s !== undefined) {
+  //           onError('unknown_symbol');
+  //         } else {
+  //           onResultReady(response);
+  //         }
+  //       })
+  //       .catch((reason) => {
+  //       // logMessage(`UdfCompatibleDatafeed: Error resolving symbol: ${getErrorMessage(reason)}`);
+  //       onError('unknown_symbol');
+  //     });
+  //   } else {
+  //     if (this._symbolsStorage === null) {
+  //       throw new Error('UdfCompatibleDatafeed: inconsistent configuration (symbols storage)');
+  //     }
+  //
+  //     // this._symbolsStorage.resolveSymbol(symbolName).then(onResultReady).catch(onError);
+  //   }
+  // }
 
   // public getMarks(symbolInfo: LibrarySymbolInfo, from: number, to: number, onDataCallback: GetMarksCallback<Mark>, resolution: ResolutionString): void {
   //   if (!this._configuration.supports_marks) {

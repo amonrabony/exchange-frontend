@@ -64,7 +64,7 @@ class TradingView extends Component {
       library_path: this.props.libraryPath,
 
       locale: getLanguageFromURL() || 'en',
-      disabled_features: ['use_localstorage_for_settings'],
+      disabled_features: ['use_localstorage_for_settings', 'header_symbol_search'],
       enabled_features: ['study_templates'],
       charts_storage_url: this.props.chartsStorageUrl,
       charts_storage_api_version: this.props.chartsStorageApiVersion,

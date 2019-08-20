@@ -38,21 +38,20 @@ export class CompatibleDatafeedBase {
 
   resolveSymbol(symbolName, onResolve, onError) {
     const info = {
-      description: "AZBIT LTD",
+      description: "ETH/USD",
       'exchange-listed': "Azbit",
       'exchange-traded': "Azbit",
-      has_intraday: false,
-      has_no_volume: false,
+      has_intraday: true,
       minmov: 1,
-      minmov2: 0,
       name: "ETH_USD",
       pointvalue: 1,
-      pricescale: 100,
-      session: "0930-1630",
-      supported_resolutions: ["D", "2D", "3D", "W", "3W", "M", "6M"],
+      pricescale: 100000000,
       ticker: "ETH_USD",
       timezone: "Europe/Tallinn",
-      type: "stock",
+      supported_resolutions:  ["1", "15", "60", "1D", '1W'],
+      session: '24x7',
+      volume_precision: 8,
+      type: 'crypto',
     };
 
     setTimeout(() => onResolve(info), 0);
@@ -140,7 +139,7 @@ export class CompatibleDatafeedBase {
       return;
     }
 
-    this._send('time')
+    this._send('api/v2/peatio/public/timestamp')
       .then((response) => {
         const time = parseInt(response);
         if (!isNaN(time)) {
@@ -176,7 +175,7 @@ function defaultConfiguration() {
   return {
     supports_search: false,
     supports_group_request: false,
-    supported_resolutions: ['1', '5', '15', '30', '60', '1D', '1W', '1M'],
+    supported_resolutions:  ['1', '15', '60', '1D', '1W'],
     supports_marks: false,
     supports_time: true,
     supports_timescale_marks: true,

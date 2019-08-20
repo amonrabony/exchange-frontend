@@ -56,7 +56,7 @@ class LoginPage extends Component {
             onSubmit={this.onSubmit}
             error={error}
           />
-          <Link to="/tradingview">TradingView</Link>
+          <Link to="/tradingview" style={{ marginTop: 16, color: 'red', fontSize: 24, }}>TradingView</Link>
         </Paper>
       </main>
     );

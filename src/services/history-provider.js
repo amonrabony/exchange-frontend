@@ -8,23 +8,14 @@ export class HistoryProvider {
 	}
 
 	getBars(symbolInfo, resolution, rangeStartDate, rangeEndDate) {
-		// const requestParams = {
-		// 	symbol: symbolInfo.ticker || '',
-		// 	resolution: resolution,
-		// 	from: rangeStartDate,
-		// 	to: rangeEndDate,
-		// };
-
     const requestParams = {
       time_from: rangeStartDate,
       time_to: rangeEndDate,
+      period: this.getPeriod(resolution),
     };
 
-    // const rangeEndTime = parseInt((Date.now() / 1000).toString());
-    // const rangeStartTime = rangeEndTime - 1 * 24 * 60 * 60;
-
 		return new Promise((resolve, reject) => {
-			this._requester.sendRequest('http://www.app.local', 'api/v2/peatio/public/markets/ethusd/k-line', requestParams)
+			this._requester.sendRequest(this._datafeedUrl, 'api/v2/peatio/public/markets/ethusd/k-line', requestParams)
       // this._requester.sendRequest(this._datafeedUrl, 'history', requestParams)
 				.then((response) => {
 					// if (response.s !== 'ok' && response.s !== 'no_data') {
@@ -96,4 +87,24 @@ export class HistoryProvider {
 				});
 		});
 	}
+
+  getPeriod(resolution) {
+    let min = 1;
+
+    if (resolution === 'D' || resolution === '1D') {
+      min = 1440;
+    } else if (resolution === 'W' || resolution === '1W') {
+      min = 10080;
+    } else if (resolution === '5') {
+      min = 5;
+    } else if (resolution === '15') {
+      min = 15;
+    } else if (resolution === '30') {
+      min = 30;
+    } else if (resolution === '60') {
+      min = 60;
+    }
+
+    return min;
+  }
 }

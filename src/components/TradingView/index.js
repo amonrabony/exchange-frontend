@@ -16,10 +16,11 @@ function getLanguageFromURL() {
 class TradingView extends Component {
 
   static defaultProps = {
-    symbol: 'AAPL',
+    symbol: 'ETH_USD',
     interval: 'D',
     containerId: 'tv_chart_container',
-    datafeedUrl: 'https://demo_feed.tradingview.com',
+    // datafeedUrl: 'https://demo_feed.tradingview.com',
+    datafeedUrl: 'http://www.app.local',
     libraryPath: '/charting_library/',
     chartsStorageUrl: 'https://saveload.tradingview.com',
     chartsStorageApiVersion: '1.1',

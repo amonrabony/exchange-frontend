@@ -3,7 +3,7 @@ import * as actions from '../actions/auth';
 import * as userActions from '../actions/user';
 import * as types from '../constants/actions';
 import { push } from 'connected-react-router';
-import { logoutUser, loginUser } from '../api/auth';
+import { logoutUser, loginUser, signUpUser } from '../api/auth';
 import { fetchUser } from './user';
 
 
@@ -34,4 +34,18 @@ export function* fetchLogin({ payload: { email, password } }) {
 
 export function* fetchLoginSaga() {
   yield takeEvery(types.FETCH_LOGIN, fetchLogin);
+}
+
+export function* fetchSignUp({ payload: { email, password } }) {
+  try {
+    yield call(signUpUser, email, password);
+    yield call(fetchUser);
+    yield put(push('/wallets'));
+  } catch (e) {
+    yield put(actions.failLogin('Oups! Error occurs, please try again later.'));
+  }
+}
+
+export function* fetchSignUpSaga() {
+  yield takeEvery(types.FETCH_SIGN_UP, fetchSignUp);
 }

@@ -30,12 +30,12 @@ const styles = theme => ({
   }
 });
 
-class LoginPage extends Component {
+class SignUpPage extends Component {
   state = { email: '', password: '' };
 
   onSubmit = e => {
     e.preventDefault();
-    this.props.actions.fetchLogin(this.state.email, this.state.password);
+    this.props.actions.fetchSignUp(this.state.email, this.state.password);
   };
 
   handleChangeField = (field, value) => this.setState({ [field]: value });
@@ -48,17 +48,16 @@ class LoginPage extends Component {
       <main className={classes.main}>
         <CssBaseline />
         <Paper className={classes.paper}>
-          <Typography component="h1" variant="h5">Sign in</Typography>
+          <Typography component="h1" variant="h5">Sign up</Typography>
           <LoginForm
             email={email}
             password={password}
             onChange={this.handleChangeField}
             onSubmit={this.onSubmit}
             error={error}
-            btnAction={'Sign in'}
+            btnAction={'Sign up'}
           />
-          <Link to="/signup" style={{ marginTop: 16, color: 'red', fontSize: 24, }}>Sign Up</Link>
-          <Link to="/tradingview" style={{ marginTop: 16, color: 'red', fontSize: 24, }}>TradingView</Link>
+          <Link to="/login" style={{ marginTop: 16, color: 'red', fontSize: 24, }}>Login</Link>
         </Paper>
       </main>
     );
@@ -68,5 +67,5 @@ class LoginPage extends Component {
 export default compose(
   withStyles(styles),
   connect(state => ({
-    error: state.auth.errorLogin
-  }), actions))(LoginPage);
+    error: state.auth.errorSignUp
+  }), actions))(SignUpPage);

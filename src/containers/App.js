@@ -5,6 +5,7 @@ import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import WalletPage from './WalletPage';
 import TradePage from './TradePage';
 import LoginPage from './LoginPage';
+import SignUpPage from './SignUpPage';
 import TradingviewPage from './TradingviewPage';
 import actions from "../actions";
 import PrivateRoute from '../components/PrivateRoute';
@@ -42,6 +43,7 @@ class App extends Component {
           <Redirect exact from='/' to='/wallets' />
           <Route exact path="/tradingview" component={TradingviewPage}/>
           <Route exact path="/login" component={LoginPage}/>
+          <Route exact path="/signup" component={SignUpPage}/>
           <PrivateRoute path="/wallets" component={WalletPage} isAuthenticated={isAuthenticated} isLoading={isFetching}/>
           <PrivateRoute path="/trade" component={TradePage} isAuthenticated={isAuthenticated} isLoading={isFetching}/>
         </Switch>

@@ -32,3 +32,6 @@ export const FAIL_TRADING_DATA = 'trading/FAIL_TRADING_DATA';
 
 export const FETCH_ORDER = 'order/FETCH_ORDER';
 export const FAIL_ORDER = 'order/FAIL_ORDER';
+
+export const FETCH_SIGN_UP = 'auth/FETCH_SIGN_UP';
+export const FAIL_SIGN_UP = 'auth/FAIL_SIGN_UP';

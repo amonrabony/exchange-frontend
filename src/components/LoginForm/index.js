@@ -21,7 +21,7 @@ class LoginForm extends Component {
   onChange = field => e => this.props.onChange(field, e.target.value.trim());
 
   render () {
-    const { classes, email, password, onSubmit, error } = this.props;
+    const { classes, email, password, onSubmit, error, btnAction } = this.props;
 
     return (
       <form className={classes.form} onSubmit={onSubmit}>
@@ -53,7 +53,7 @@ class LoginForm extends Component {
           color="primary"
           className={classes.submit}
         >
-          Sign in
+          {btnAction}
         </Button>
       </form>
     );

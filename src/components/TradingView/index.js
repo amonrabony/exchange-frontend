@@ -109,7 +109,7 @@ class TradingView extends Component {
       <div
         id={ this.props.containerId }
         className={ 'TVChartContainer' }
-        style={{height: '100vh'}}
+        style={{height: '500px'}}
       />
     );
   }

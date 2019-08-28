@@ -21,7 +21,7 @@ class OrderForm extends Component {
   onChange = field => e => this.props.onChange(field, e.target.value.trim());
 
   render () {
-    const { classes, price, amount, btnName, onSubmit, error } = this.props;
+    const { classes, price, amount, btnName, onSubmit, error, type } = this.props;
 
     return (
       <form className={classes.form} onSubmit={onSubmit}>
@@ -31,7 +31,7 @@ class OrderForm extends Component {
             id="price"
             type="number"
             value={price}
-            onChange={this.onChange('price')}
+            onChange={this.onChange('price' + type)}
           />
         </FormControl>
         <FormControl margin="normal" required fullWidth>
@@ -40,7 +40,7 @@ class OrderForm extends Component {
             id="amount"
             type="number"
             value={amount}
-            onChange={this.onChange('amount')}
+            onChange={this.onChange('amount' + type)}
           />
         </FormControl>
         <Typography variant="h6" style={{padding: 10, color: 'red', fontSize: '12px', textAlign: 'center'}}>

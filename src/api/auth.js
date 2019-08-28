@@ -17,7 +17,7 @@ export const loginUser = (email, password, otp_code='', recaptcha_response='') =
 export const signUpUser = (email, password, refid='', lang='', captcha_response='') => {
   return axiosInstance.post(
     '/api/v2/barong/identity/users',
-    { email, password, refid, lang, captcha_response }
+    { email, password, }
   )
     .then(response => response.data)
 };

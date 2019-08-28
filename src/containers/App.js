@@ -45,7 +45,7 @@ class App extends Component {
           <Route exact path="/login" component={LoginPage}/>
           <Route exact path="/signup" component={SignUpPage}/>
           <PrivateRoute path="/wallets" component={WalletPage} isAuthenticated={isAuthenticated} isLoading={isFetching}/>
-          <PrivateRoute path="/trade" component={TradePage} isAuthenticated={isAuthenticated} isLoading={isFetching}/>
+          <PrivateRoute path="/trade" component={TradingviewPage} isAuthenticated={isAuthenticated} isLoading={isFetching}/>
         </Switch>
       </MuiThemeProvider>
     );

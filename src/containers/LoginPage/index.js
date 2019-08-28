@@ -58,7 +58,7 @@ class LoginPage extends Component {
             btnAction={'Sign in'}
           />
           <Link to="/signup" style={{ marginTop: 16, color: 'red', fontSize: 24, }}>Sign Up</Link>
-          <Link to="/tradingview" style={{ marginTop: 16, color: 'red', fontSize: 24, }}>TradingView</Link>
+          {/*<Link to="/tradingview" style={{ marginTop: 16, color: 'red', fontSize: 24, }}>TradingView</Link>*/}
         </Paper>
       </main>
     );

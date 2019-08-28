@@ -10,6 +10,8 @@ import { fetchTradingData } from '../../actions/trading';
 import { fetchOrder } from '../../actions/order';
 import TradingView from '../../components/TradingView';
 import OrderForm from '../../components/OrderForm';
+import actions from "../../actions";
+import Layout from '../Layout';
 
 const styles = theme => ({
   paper: {
@@ -25,17 +27,19 @@ const styles = theme => ({
 });
 
 class TradingviewPage extends Component {
-
-  state = { priceBuy: '', amountBuy: '', priceSell: '', amountSell: '' };
+  constructor(props) {
+    super(props);
+    this.state = { priceBuy: '', amountBuy: '', priceSell: '', amountSell: '' };
+  }
 
   onSubmit = e => {
     e.preventDefault();
-    this.props.fetchOrder(this.state.priceBuy, this.state.amountBuy, 'buy');
+    this.props.actions.fetchOrder(this.state.priceBuy, this.state.amountBuy, 'buy');
   };
 
   onSubmitSell = e => {
     e.preventDefault();
-    this.props.fetchOrder(this.state.priceSell, this.state.amountSell, 'sell');
+    this.props.actions.fetchOrder(this.state.priceSell, this.state.amountSell, 'sell');
   };
 
   handleChangeField = (field, value) => this.setState({ [field]: value });
@@ -47,41 +51,46 @@ class TradingviewPage extends Component {
 
   render () {
     // eslint-disable-next-line
-    const { classes, tradingIsFetching, data, priceBuy, amountBuy, priceSell, amountSell } = this.props;
+    const { classes, tradingIsFetching, data } = this.props;
+    const { priceBuy, amountBuy, priceSell, amountSell } = this.state;
 
     return (
-      <main className={classes.main}>
-        <CssBaseline />
-        {/*<Typography component="h1" variant="h5">TragingView</Typography>*/}
-        {/*{!tradingIsFetching && !!data.length && (<TradingView data={data}/>)}*/}
-        <TradingView/>
+      <Layout>
+        <main className={classes.main} style={{ width: '100%' }}>
+          <CssBaseline />
+          {/*<Typography component="h1" variant="h5">TragingView</Typography>*/}
+          {/*{!tradingIsFetching && !!data.length && (<TradingView data={data}/>)}*/}
+          <TradingView/>
 
-        <div style={{ display: 'flex', }}>
-          <Paper className={classes.paper}>
-            <Typography component="h1" variant="h5">Buy</Typography>
-            <OrderForm
-              price={priceBuy}
-              amount={amountBuy}
-              onChange={this.handleChangeField}
-              onSubmit={this.onSubmit}
-              // error={error}
-              btnName={'Buy'}
-            />
-          </Paper>
+          <div style={{ display: 'flex', }}>
+            <Paper className={classes.paper}>
+              <Typography component="h1" variant="h5">Buy</Typography>
+              <OrderForm
+                price={priceBuy}
+                amount={amountBuy}
+                onChange={this.handleChangeField}
+                onSubmit={this.onSubmit}
+                // error={error}
+                btnName={'Buy'}
+                type={'Buy'}
+              />
+            </Paper>
 
-          <Paper className={classes.paper}>
-            <Typography component="h1" variant="h5">Sell</Typography>
-            <OrderForm
-              price={priceSell}
-              amount={amountSell}
-              onChange={this.handleChangeField}
-              onSubmit={this.onSubmitSell}
-              // error={error}
-              btnName={'Sell'}
-            />
-          </Paper>
-        </div>
-      </main>
+            <Paper className={classes.paper}>
+              <Typography component="h1" variant="h5">Sell</Typography>
+              <OrderForm
+                price={priceSell}
+                amount={amountSell}
+                onChange={this.handleChangeField}
+                onSubmit={this.onSubmitSell}
+                // error={error}
+                btnName={'Sell'}
+                type={'Sell'}
+              />
+            </Paper>
+          </div>
+        </main>
+      </Layout>
     );
   }
 }
@@ -103,5 +112,5 @@ function mapDispatchToProps(dispatch) {
 
 export default compose(
   withStyles(styles),
-  connect(mapStateToProps, mapDispatchToProps),
+  connect(mapStateToProps, actions),
 )(TradingviewPage);
